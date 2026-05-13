@@ -4,81 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radio Ñasaindy AM</title>
-
-<style>
-body{
-  margin:0;
-  background:#000;
-  color:#fff;
-  font-family: Arial, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
-}
-
-.box{
-  max-width:320px;
-}
-
-.title{
-  font-size:30px;
-  font-weight:bold;
-  letter-spacing:2px;
-}
-
-.live{
-  color:red;
-  margin-top:10px;
-  font-weight:bold;
-  animation:blink 1s infinite;
-}
-
-@keyframes blink{
-  50%{opacity:0.3;}
-}
-
-.text{
-  margin-top:10px;
-  font-size:13px;
-  opacity:0.7;
-}
-</style>
 </head>
 
-<body>
+<body style="margin:0;background:black;">
 
-<div class="box">
-
-  <div class="title">📻 RADIO ÑASAINDY AM</div>
-
-  <div class="live">🔴 EN VIVO</div>
-
-  <div class="text">Transmitiendo 24/7 online</div>
-
-  <audio id="radio">
-    <source src="http://84.247.167.61:8000/stream" type="audio/mpeg">
-  </audio>
-
-</div>
-
-<script>
-const radio = document.getElementById("radio");
-
-window.addEventListener("load", () => {
-  const playPromise = radio.play();
-
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      // si el navegador bloquea autoplay, no rompe la página
-      document.body.addEventListener("click", () => {
-        radio.play();
-      }, { once: true });
-    });
-  }
-});
-</script>
+<iframe 
+  src="http://84.247.167.61:8000/index.html?sid=1"
+  style="width:100%;height:100vh;border:none;">
+</iframe>
 
 </body>
 </html>

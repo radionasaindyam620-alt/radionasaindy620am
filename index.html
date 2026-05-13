@@ -9,8 +9,8 @@
 body{
   margin:0;
   background:#000;
-  color:white;
-  font-family: Arial, sans-serif;
+  color:#fff;
+  font-family:Arial, sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -18,69 +18,54 @@ body{
   text-align:center;
 }
 
-/* Contenedor */
-.box{
-  max-width:350px;
+.container{
+  max-width:400px;
 }
 
-/* Título */
 h1{
-  font-size:28px;
+  font-size:30px;
   margin-bottom:10px;
 }
 
-/* Subtítulo */
-p{
-  opacity:0.8;
-  margin-bottom:25px;
-}
-
-/* BOTÓN FUCSIA */
-button{
-  background:#ff2bbd; /* fucsia fuerte */
-  color:white;
-  border:none;
-  padding:18px 35px;
-  font-size:18px;
-  font-weight:bold;
-  border-radius:12px;
-  cursor:pointer;
-  box-shadow:0 0 15px rgba(255, 43, 189, 0.6);
-  transition:0.3s;
-}
-
-button:hover{
-  background:#ff4dd1;
-  transform:scale(1.05);
-}
-
-/* EN VIVO */
 .live{
   color:#ff2bbd;
   font-weight:bold;
-  margin-bottom:10px;
+  margin-bottom:20px;
   animation:blink 1s infinite;
 }
 
 @keyframes blink{
   50%{opacity:0.3;}
 }
+
+button{
+  background:#ff2bbd;
+  color:white;
+  border:none;
+  padding:18px 40px;
+  font-size:20px;
+  font-weight:bold;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(0.97);
+}
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
   <div class="live">🔴 24 HORAS EN VIVO</div>
 
   <h1>📻 Radio Ñasaindy AM</h1>
 
-  <p>Escucha ahora transmisión online</p>
+  <button onclick="playRadio()">ESCUCHA AHORA</button>
 
-  <button onclick="playRadio()">▶ ESCUCHA AHORA</button>
-
-  <audio id="radio">
+  <audio id="radio" preload="none">
     <source src="http://84.247.167.61:8000/stream" type="audio/mpeg">
   </audio>
 
@@ -89,9 +74,9 @@ button:hover{
 <script>
 function playRadio(){
   const radio = document.getElementById("radio");
-
-  radio.play().catch(()=>{
-    alert("No se pudo reproducir el stream en este momento.");
+  radio.play().catch(err => {
+    alert("Si no suena, abre el link directo del stream en otra pestaña primero.");
+    console.log(err);
   });
 }
 </script>

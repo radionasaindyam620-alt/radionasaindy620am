@@ -1,22 +1,85 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radio Ñasaindy AM</title>
+<title>Radio Ñasaindy AM 620</title>
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:Arial;
+  text-align:center;
+}
+
+/* Header */
+.header{
+  padding:30px 20px 10px;
+}
+
+h1{
+  margin:0;
+  font-size:28px;
+}
+
+p{
+  opacity:0.8;
+}
+
+/* Botón */
+.btn{
+  background:#ff2bbd;
+  color:white;
+  border:none;
+  padding:18px 40px;
+  font-size:20px;
+  font-weight:bold;
+  border-radius:12px;
+  cursor:pointer;
+  margin-top:20px;
+  box-shadow:0 0 15px rgba(255,43,189,0.5);
+}
+
+.btn:hover{
+  background:#ff4dd1;
+}
+
+/* Contenedor radio */
+.player{
+  margin-top:20px;
+}
+</style>
 </head>
 
-<body style="margin:0;background:black;">
+<body>
 
-<div style="text-align:center;color:white;padding:20px;">
+<div class="header">
   <h1>📻 Radio Ñasaindy AM 620</h1>
   <p>🔴 24 horas en vivo</p>
+
+  <button class="btn" onclick="openRadio()">
+    ESCUCHA AHORA
+  </button>
 </div>
 
-<iframe 
-  src="https://radionasaindy.com.py/reproductor-nasaindy/player.html"
-  style="width:100%;height:80vh;border:none;">
-</iframe>
+<div class="player">
+  <iframe 
+    id="radioFrame"
+    src=""
+    style="width:100%;height:70vh;border:none;display:none;">
+  </iframe>
+</div>
+
+<script>
+function openRadio(){
+  const frame = document.getElementById("radioFrame");
+
+  frame.src = "https://radionasaindy.com.py/reproductor-nasaindy/player.html";
+  frame.style.display = "block";
+}
+</script>
 
 </body>
 </html>

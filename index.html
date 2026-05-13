@@ -1,20 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Radio Ñasaindy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Ñasaindy AM</title>
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family: Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+}
+
+/* Contenedor */
+.box{
+  max-width:350px;
+}
+
+/* Título */
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+/* Subtítulo */
+p{
+  opacity:0.8;
+  margin-bottom:25px;
+}
+
+/* BOTÓN FUCSIA */
+button{
+  background:#ff2bbd; /* fucsia fuerte */
+  color:white;
+  border:none;
+  padding:18px 35px;
+  font-size:18px;
+  font-weight:bold;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(255, 43, 189, 0.6);
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ff4dd1;
+  transform:scale(1.05);
+}
+
+/* EN VIVO */
+.live{
+  color:#ff2bbd;
+  font-weight:bold;
+  margin-bottom:10px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0.3;}
+}
+</style>
 </head>
-<body style="background:black;color:white;text-align:center;font-family:Arial;">
 
-<h1>📻 Radio Ñasaindy AM</h1>
-<p>Stream: live.mp3</p>
+<body>
 
-<button onclick="document.getElementById('r').play()">
-ESCUCHAR
-</button>
+<div class="box">
 
-<audio id="r" controls>
-  <source src="http://84.247.167.61:8000/live.mp3" type="audio/mpeg">
-</audio>
+  <div class="live">🔴 24 HORAS EN VIVO</div>
+
+  <h1>📻 Radio Ñasaindy AM</h1>
+
+  <p>Escucha ahora transmisión online</p>
+
+  <button onclick="playRadio()">▶ ESCUCHA AHORA</button>
+
+  <audio id="radio">
+    <source src="http://84.247.167.61:8000/stream" type="audio/mpeg">
+  </audio>
+
+</div>
+
+<script>
+function playRadio(){
+  const radio = document.getElementById("radio");
+
+  radio.play().catch(()=>{
+    alert("No se pudo reproducir el stream en este momento.");
+  });
+}
+</script>
 
 </body>
 </html>

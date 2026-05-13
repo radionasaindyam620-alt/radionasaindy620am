@@ -23,13 +23,15 @@ body{
 }
 
 .title{
-  font-size:28px;
+  font-size:30px;
   font-weight:bold;
+  letter-spacing:2px;
 }
 
 .live{
   color:red;
   margin-top:10px;
+  font-weight:bold;
   animation:blink 1s infinite;
 }
 
@@ -53,10 +55,10 @@ body{
 
   <div class="live">🔴 EN VIVO</div>
 
-  <div class="text">Transmitiendo online 24/7</div>
+  <div class="text">Transmitiendo 24/7 online</div>
 
   <audio id="radio">
-    <source src="http://84.247.167.61:8000/stream?sid=1" type="audio/mpeg">
+    <source src="http://84.247.167.61:8000/stream" type="audio/mpeg">
   </audio>
 
 </div>
@@ -64,17 +66,18 @@ body{
 <script>
 const radio = document.getElementById("radio");
 
-window.onload = function () {
-  const play = radio.play();
+window.addEventListener("load", () => {
+  const playPromise = radio.play();
 
-  if (play !== undefined) {
-    play.catch(() => {
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // si el navegador bloquea autoplay, no rompe la página
       document.body.addEventListener("click", () => {
         radio.play();
       }, { once: true });
     });
   }
-};
+});
 </script>
 
 </body>

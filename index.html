@@ -9,8 +9,8 @@
 body{
   margin:0;
   background:#000;
-  color:#fff;
-  font-family:Arial, sans-serif;
+  color:white;
+  font-family:Arial;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -18,67 +18,43 @@ body{
   text-align:center;
 }
 
-.container{
-  max-width:400px;
-}
-
 h1{
   font-size:30px;
-  margin-bottom:10px;
 }
 
-.live{
+.status{
   color:#ff2bbd;
-  font-weight:bold;
-  margin-bottom:20px;
-  animation:blink 1s infinite;
-}
-
-@keyframes blink{
-  50%{opacity:0.3;}
-}
-
-button{
-  background:#ff2bbd;
-  color:white;
-  border:none;
-  padding:18px 40px;
-  font-size:20px;
-  font-weight:bold;
-  border-radius:12px;
-  cursor:pointer;
-}
-
-button:active{
-  transform:scale(0.97);
+  margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-  <div class="live">🔴 24 HORAS EN VIVO</div>
-
-  <h1>📻 Radio Ñasaindy AM</h1>
-
-  <button onclick="playRadio()">ESCUCHA AHORA</button>
-
-  <audio id="radio" preload="none">
-    <source src="http://84.247.167.61:8000/stream" type="audio/mpeg">
-  </audio>
-
+<div>
+  <h1>📻 Radio Ñasaindy AM 620</h1>
+  <div class="status">🔴 24 horas en vivo</div>
 </div>
 
+<audio id="radio" autoplay>
+  <source src="https://radionasaindy.com.py/reproductor-nasaindy/player.html" type="audio/mpeg">
+</audio>
+
 <script>
-function playRadio(){
-  const radio = document.getElementById("radio");
-  radio.play().catch(err => {
-    alert("Si no suena, abre el link directo del stream en otra pestaña primero.");
-    console.log(err);
-  });
-}
+window.addEventListener("load", () => {
+  const audio = document.getElementById("radio");
+
+  const playPromise = audio.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // fallback automático sin botón visible
+      document.body.addEventListener("click", () => {
+        audio.play();
+      }, { once: true });
+    });
+  }
+});
 </script>
 
 </body>

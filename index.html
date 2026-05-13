@@ -1,3 +1,76 @@
-<a href="http://84.247.167.61:8000/index.html?sid=1">
-Escuchar en el reproductor del servidor
-</a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Ñasaindy AM 620</title>
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+}
+
+.box{
+  max-width:400px;
+}
+
+h1{
+  font-size:30px;
+}
+
+button{
+  background:red;
+  color:white;
+  border:none;
+  padding:20px 40px;
+  font-size:20px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+button:hover{
+  background:#cc0000;
+}
+
+.small{
+  opacity:0.7;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h1>📻 Radio Ñasaindy AM 620</h1>
+  <div class="small">🔴 En vivo</div>
+
+  <button onclick="playRadio()">ESCUCHAR AHORA</button>
+
+  <audio id="radio">
+    <source src="http://84.247.167.61:8000/stream.mp3" type="audio/mpeg">
+  </audio>
+
+</div>
+
+<script>
+function playRadio(){
+  const r = document.getElementById("radio");
+  r.play().catch(()=>{
+    alert("No se pudo reproducir el stream. Probando otro link...");
+  });
+}
+</script>
+
+</body>
+</html>
